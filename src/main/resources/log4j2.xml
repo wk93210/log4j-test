@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+  <Properties>
+    <Property name="csvLog.filePrefix">logs</Property>
+    <Property name="file-header">hashed_email,event_type,event_timestamp,amount</Property>
+  </Properties>
+  <Appenders>
+    <RollingRandomAccessFile name="RollingRandomAccessFile" 
+	                     filePattern="${csvLog.filePrefix}/%d{yyyy-MM-dd}/conversion-%d{HH-mm-ss}-%03i.csv"
+	    		     immediateFlush="false"
+	    		     append="false">
+      <CsvParameterLayout delimiter="," header="${file-header}\n"/>
+      <Policies>
+        <TimeBasedTriggeringPolicy interval="10" />
+        <SizeBasedTriggeringPolicy size="5 MB" />
+      </Policies>
+    </RollingRandomAccessFile>
+  </Appenders>
+  <Loggers>
+    <Root level="debug" additivity="false">
+      <AppenderRef ref="RollingRandomAccessFile" level="debug"/>
+    </Root>
+  </Loggers>
+</Configuration>

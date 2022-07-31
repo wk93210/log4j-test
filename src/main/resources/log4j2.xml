@@ -6,7 +6,7 @@
   </Properties>
   <Appenders>
     <RollingRandomAccessFile name="RollingRandomAccessFile" 
-	                     filePattern="${csvLog.filePrefix}/%d{yyyy-MM-dd}/conversion-%d{HH-mm-ss}-%03i.csv"
+	                     filePattern="${csvLog.filePrefix}/%d{yyyy-MM-dd}/$${env:HOSTNAME}-%d{HH-mm-ss}-%03i.csv"
 	    		     immediateFlush="false"
 	    		     append="false">
       <CsvParameterLayout delimiter="," header="${file-header}\n"/>
